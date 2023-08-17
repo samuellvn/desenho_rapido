@@ -1,0 +1,3 @@
+var randomNumber;
+
+console.log()
