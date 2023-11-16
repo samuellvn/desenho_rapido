@@ -69,6 +69,19 @@ function setup(){
     background("white");
     canvas.mouseReleased(classify_canvas);
 }
+function classify_canvas(){
+    classifier.classify(canvas, got_results);
+}
+function got_results(error, results){
+    if(error==true){
+        console.error(error);
+    } else{
+        console.log(results);
+        desenha_rascunho=results[0].label;
+        document.getElementById("label").innerHTML="seu esboço: "+desenha_rascunho.replace("_", " ");
+        document.getElementById("confidence").innerHTML="precisão: "+Math.round(results[0].confidence *100)+"%";
+    }
+}
 function draw(){
     strokeWeight(13);
     stroke(black);
